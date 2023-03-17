@@ -15,11 +15,16 @@ type
 
   TForm1 = class(TForm)
     MenuScrollBox: TScrollBox;
-    ScrollBox2: TScrollBox;
+    HomeScrollBox: TScrollBox;
     procedure FormCreate(Sender: TObject);
     procedure OnItemClick(Sender: TObject);
     procedure MenuScrollBoxClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+
   private
+   // FCSS: TCSSStyleSheet;
+    procedure PanelIn(Sender: TObject);
+    procedure PanelOut(Sender: TObject);
 
   public
 
@@ -89,7 +94,7 @@ procedure TForm1.FormCreate(Sender: TObject);
   end;
 begin
   AddLogo;
-  {AddItem('Dashboard', 'f080');
+  AddItem('Dashboard', 'f080');
   AddItem('Pages','f0f6');
   AddItem('Auth', 'f084');
   AddItem('Layouts', 'f26c');
@@ -100,7 +105,7 @@ begin
   AddItem('Calendar', 'f073');
   AddItem('Maps', 'f278');
   AddItem('Settings', 'f013');
-  AddItem('Settings is soooo long how can we handle this under this html file', 'f013');    }
+  AddItem('Settings is soooo long how can we handle this under this html file', 'f013');
 end;
 
 procedure TForm1.MenuScrollBoxClick(Sender: TObject);
@@ -120,6 +125,56 @@ begin
     Node.CompStyle.Display := cdtBlock;
   Node.Style.Display := Node.CompStyle.Display;   // change "default" style (after no more :hover)
   TCSSShape(Node.RootNode.ParentControl).Changed; // relayout and repaint
+end;
+procedure TForm1.PanelIn(Sender: TObject);
+begin
+  TShape(Sender).Brush.Color := clRed;
+end;
+
+procedure TForm1.PanelOut(Sender: TObject);
+begin
+  TShape(Sender).Brush.Color := clWhite;
+end;
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  sh: TCSSShape;
+  procedure AddChart(AIcon, AIconColor, AValue, AText: String);
+  var
+    container, icon, body, node: THtmlNode;
+    btn: TButton;
+  begin
+    container := THtmlNode.Create('display:inline-block; background-color:white;margin:20px;padding:20px;border:1px solid #F1F5F9;');
+    container.Id := 'container';
+      icon := THtmlNode.Create('display:inline-block;');
+      icon.Id := 'icon';
+      icon.AddNode( HTMLFa('font:32px;padding:10px;color:'+AIconColor+';', AIcon, 'faicon'));
+      body := THtmlNode.Create('display:inline-block;');
+      body.AddNode( HTMLSpan('display:block;font:20px;color:black;', AValue));
+      body.AddNode( HTMLSpan('font:10px;color:rgb(73, 80, 87);', AText));
+
+      btn := TButton.Create(Self);
+      btn.Caption := 'I''m LCL!';
+      btn.AutoSize := True;
+      btn.Align := alCustom;
+      btn.Parent := HomeScrollBox;
+      node := THtmlNode.Create('display:inline-block;margin-left:20px;');
+      node.AlignControl := btn;
+      body.AddNode(node);
+
+    container.AddNode(icon);
+    container.AddNode(body);
+    sh.Body.AddNode( container);
+  end;
+begin
+  sh := TCSSShape.Create(Self);
+  sh.AutoSize := True;
+  sh.Top := 100;
+  sh.Align := alTop;
+  sh.Body.InlineStyle := 'margin:10px;';
+    AddChart('f07a', '#47BAC1', '2.562', 'Sales Today');
+    AddChart('f201', '#FCC100', '17.212', 'Visitors Today');
+    AddChart('f153', '#5FC27E', '$ 24.300', 'Total Earnings');
+  sh.Parent := HomeScrollBox;
 end;
 
 end.

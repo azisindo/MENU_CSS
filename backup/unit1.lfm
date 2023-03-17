@@ -9,26 +9,32 @@ object Form1: TForm1
   DesignTimePPI = 144
   OnCreate = FormCreate
   object MenuScrollBox: TScrollBox
-    Left = 8
-    Height = 761
-    Top = 8
+    Left = 0
+    Height = 784
+    Top = 0
     Width = 288
     HorzScrollBar.Page = 1
     VertScrollBar.Page = 1
-    Color = clBackground
+    Align = alLeft
+    BorderStyle = bsNone
+    Color = 5390389
     ParentBackground = False
     ParentColor = False
     TabOrder = 0
     OnClick = MenuScrollBoxClick
   end
-  object ScrollBox2: TScrollBox
-    Left = 335
+  object HomeScrollBox: TScrollBox
+    Left = 288
     Height = 784
     Top = 0
-    Width = 857
+    Width = 904
     HorzScrollBar.Page = 1
     VertScrollBar.Page = 1
-    Align = alRight
+    Align = alClient
+    BorderStyle = bsNone
+    Color = 16447475
+    ParentBackground = False
+    ParentColor = False
     TabOrder = 1
   end
 end
