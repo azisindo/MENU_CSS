@@ -14,8 +14,13 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
     MenuScrollBox: TScrollBox;
     HomeScrollBox: TScrollBox;
+    Panel1: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure OnItemClick(Sender: TObject);
     procedure MenuScrollBoxClick(Sender: TObject);

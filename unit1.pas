@@ -53,7 +53,7 @@ procedure TForm1.FormCreate(Sender: TObject);
       Item.Align := alTop;
       Item.AutoSize := True;
       Item.Body.InlineStyle := 'color:rgb(173, 181, 189);margin-bottom:10px;';
-      //Item.Body.OnClick := @Button2Click;
+      Item.Body.OnClick := @Button1Click;
       Item.Body.AddNode( HTMLFa('font:30px;margin-left:20px;color:#47BAC1;', 'f1cb').SetHover('color:red;'));  // main icon
       Item.Body.AddNode( HTMLSpan('font:18px;color:white; padding:15px 10px; padding-right:0px;', 'AppStack')); // app name
       Item.Body.AddNode( HTMLSpan('display:inline-block;font:9px;margin-left:20px;margin-top:20px;', 'Main'));               // main text
